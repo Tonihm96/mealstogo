@@ -1,6 +1,12 @@
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar'
 import React from 'react'
-import { SafeAreaView, View, StyleSheet, Text, StatusBar } from 'react-native'
+import {
+  SafeAreaView,
+  View,
+  StyleSheet,
+  Text,
+  StatusBar
+} from 'react-native'
 
 export default function App() {
   return (
@@ -27,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'darkgrey'
   },
   searchBar: {
-    padding: 16,
+    padding: 16
   },
   listView: {
     padding: 16,

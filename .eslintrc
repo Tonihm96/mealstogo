@@ -1,0 +1,11 @@
+{
+  "extends": "@react-native-community",
+  "rules": {
+    "semi": ["error", "never"],
+    "quotes": ["error", "single"],
+    "comma-dangle": ["error", "only-multiline"]
+  },
+  "env": {
+    "node": 1
+  }
+}
