@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  SafeAreaView,
-  View,
-  StyleSheet,
-  StatusBar
-} from 'react-native'
+import { StatusBar, SafeAreaView, View } from 'react-native'
 import { Searchbar } from 'react-native-paper'
 import styled from 'styled-components/native'
 
@@ -14,15 +9,16 @@ const Container = styled.SafeAreaView`
   flex: 1;
   flex-direction: column;
   align-items: stretch;
-  padding-top: ${StatusBar.currentHeight};
+  ${StatusBar.currentHeight &&
+  `padding-top: ${StatusBar.currentHeight}px;`}
 `
 
 const Search = styled.View`
-  padding: 16px;
+  padding: ${(props) => props.theme.spacing[3]};
 `
 
 const List = styled.View`
-  padding: 16px;
+  padding: ${(props) => props.theme.spacing[3]};
   flex: 1;
 `
 
