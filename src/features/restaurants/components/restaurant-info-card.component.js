@@ -4,6 +4,7 @@ import { Paragraph, Card } from 'react-native-paper'
 import styled from 'styled-components/native'
 import { SvgXml } from 'react-native-svg'
 
+import { Spacer } from '../../../components/spacer/spacer.component'
 import star from '../../../../assets/star'
 import open from '../../../../assets/open'
 
@@ -57,7 +58,6 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
   const ratingArray = Array.from(
     new Array(Math.floor(rating))
   )
-  console.log(ratingArray)
 
   return (
     <Card elevation={15}>
@@ -71,23 +71,30 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
         </RestaurantTitle>
         <Section>
           <RatingView>
-            {ratingArray.map(() => (
-              <SvgXml xml={star} width={20} height={20} />
+            {ratingArray.map((_, idx) => (
+              <SvgXml
+                key={idx}
+                xml={star}
+                width={20}
+                height={20}
+              />
             ))}
           </RatingView>
           <InfoIcons>
             {isClosedTemporarily && (
               <ClosedText>CLOSED TEMPORARILY</ClosedText>
             )}
-            <View style={{ paddingLeft: 16 }} />
-            {isOpenNow && (
-              <SvgXml xml={open} width={20} height={20} />
-            )}
-            <View style={{ paddingLeft: 16 }} />
-            <Image
-              style={{ width: 15, height: 15 }}
-              source={{ uri: icon }}
-            />
+            <Spacer position='left' size='large'>
+              {isOpenNow && (
+                <SvgXml xml={open} width={20} height={20} />
+              )}
+            </Spacer>
+            <Spacer position='left' size='large'>
+              <Image
+                style={{ width: 15, height: 15 }}
+                source={{ uri: icon }}
+              />
+            </Spacer>
           </InfoIcons>
         </Section>
         <CardAddress>{address}</CardAddress>
