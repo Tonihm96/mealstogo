@@ -1,28 +1,17 @@
 import React from 'react'
-import { View, Image } from 'react-native'
-import { Paragraph, Card } from 'react-native-paper'
-import styled from 'styled-components/native'
+import { Image } from 'react-native'
+import { Card } from 'react-native-paper'
 import { SvgXml } from 'react-native-svg'
 
+import {
+  InfoIcons,
+  RatingView,
+  Section
+} from './restaurant-info-card.styles'
 import { Spacer } from '../../../components/spacer/spacer.component'
 import { Text } from '../../../components/typography/text.component'
 import star from '../../../../assets/star'
 import open from '../../../../assets/open'
-
-const Section = styled.View`
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-`
-
-const InfoIcons = styled.View`
-  align-items: center;
-  flex-direction: row;
-`
-
-const RatingView = styled.View`
-  flex-direction: row;
-`
 
 export const RestaurantInfo = ({ restaurant = {} }) => {
   const {
