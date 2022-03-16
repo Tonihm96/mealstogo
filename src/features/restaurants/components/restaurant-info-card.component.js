@@ -5,6 +5,7 @@ import styled from 'styled-components/native'
 import { SvgXml } from 'react-native-svg'
 
 import { Spacer } from '../../../components/spacer/spacer.component'
+import { Text } from '../../../components/typography/text.component'
 import star from '../../../../assets/star'
 import open from '../../../../assets/open'
 
@@ -14,31 +15,13 @@ const Section = styled.View`
   flex-direction: row;
 `
 
-const RestaurantTitle = styled.Text`
-  padding-top: ${(props) => props.theme.spacing[3]};
-  padding-bottom: ${(props) => props.theme.spacing[3]};
-  font-family: ${(props) => props.theme.fonts.heading};
-  font-size: ${(props) => props.theme.fontSizes.body};
-  color: ${(props) => props.theme.colors.ui.primary};
-`
-
 const InfoIcons = styled.View`
   align-items: center;
   flex-direction: row;
 `
 
-const ClosedText = styled.Text`
-  color: ${(props) => props.theme.colors.text.error};
-`
-
 const RatingView = styled.View`
   flex-direction: row;
-`
-
-const CardAddress = styled(Paragraph)`
-  font-family: ${(props) => props.theme.fonts.body};
-  font-size: ${(props) => props.theme.fontSizes.caption};
-  color: ${(props) => props.theme.colors.ui.primary};
 `
 
 export const RestaurantInfo = ({ restaurant = {} }) => {
@@ -63,12 +46,15 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
     <Card elevation={15}>
       <Card.Cover source={{ uri: photos[0] }} />
       <Card.Content>
-        <RestaurantTitle
+        <Spacer position='top' size='large' />
+        <Text
           numberOfLines={1}
           ellipsizeMode='tail'
+          variant='label'
         >
           {name}
-        </RestaurantTitle>
+        </Text>
+        <Spacer position='bottom' size='large' />
         <Section>
           <RatingView>
             {ratingArray.map((_, idx) => (
@@ -82,7 +68,9 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
           </RatingView>
           <InfoIcons>
             {isClosedTemporarily && (
-              <ClosedText>CLOSED TEMPORARILY</ClosedText>
+              <Text variant='error'>
+                CLOSED TEMPORARILY
+              </Text>
             )}
             <Spacer position='left' size='large'>
               {isOpenNow && (
@@ -97,7 +85,7 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
             </Spacer>
           </InfoIcons>
         </Section>
-        <CardAddress>{address}</CardAddress>
+        <Text variant='hint'>{address}</Text>
       </Card.Content>
     </Card>
   )
