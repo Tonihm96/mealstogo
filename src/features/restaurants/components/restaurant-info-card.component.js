@@ -6,7 +6,10 @@ import { SvgXml } from 'react-native-svg'
 import {
   InfoIcons,
   RatingView,
-  Section
+  Section,
+  RestaurantCard,
+  RestaurantCardCover,
+  RestaurantCardContent
 } from './restaurant-info-card.styles'
 import { Spacer } from '../../../components/spacer/spacer.component'
 import { Text } from '../../../components/typography/text.component'
@@ -32,9 +35,9 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
   )
 
   return (
-    <Card elevation={15}>
-      <Card.Cover source={{ uri: photos[0] }} />
-      <Card.Content>
+    <RestaurantCard elevation={15}>
+      <RestaurantCardCover source={{ uri: photos[0] }} />
+      <RestaurantCardContent>
         <Spacer position='top' size='large' />
         <Text
           numberOfLines={1}
@@ -75,7 +78,7 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
           </InfoIcons>
         </Section>
         <Text variant='hint'>{address}</Text>
-      </Card.Content>
-    </Card>
+      </RestaurantCardContent>
+    </RestaurantCard>
   )
 }

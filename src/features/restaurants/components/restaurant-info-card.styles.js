@@ -1,4 +1,20 @@
 import styled from 'styled-components/native'
+import { Card } from 'react-native-paper'
+
+export const RestaurantCard = styled(Card)`
+  margin-bottom: ${(props) => props.theme.spacing[3]};
+  background-color: ${(props) =>
+    props.theme.colors.bg.primary};
+`
+export const RestaurantCardContent = styled(Card.Content)`
+  background-color: ${(props) =>
+    props.theme.colors.bg.primary};
+`
+
+export const RestaurantCardCover = styled(Card.Cover)`
+  background-color: ${(props) =>
+    props.theme.colors.bg.primary};
+`
 
 export const Section = styled.View`
   justify-content: space-between;

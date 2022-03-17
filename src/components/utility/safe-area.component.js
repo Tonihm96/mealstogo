@@ -1,0 +1,10 @@
+import { StatusBar } from 'react-native'
+import styled from 'styled-components/native'
+
+export const SafeArea = styled.SafeAreaView`
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  ${StatusBar.currentHeight &&
+  `padding-top: ${StatusBar.currentHeight}px;`}
+`
