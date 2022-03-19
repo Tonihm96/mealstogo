@@ -4,6 +4,7 @@ import { Text } from 'react-native'
 import { ThemeProvider } from 'styled-components/native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import {
   useFonts as useOswald,
@@ -31,6 +32,23 @@ const Settings = () => (
 
 const Tab = createBottomTabNavigator()
 
+const TAB_ICON = {
+  Restaurants: 'restaurant',
+  Map: 'map',
+  Settings: 'settings'
+}
+
+const createScreenOptions = ({ route }) => {
+  const iconName = TAB_ICON[route.name]
+  return {
+    tabBarIcon: ({ size, color }) => (
+      <Ionicons name={iconName} size={size} color={color} />
+    ),
+    tabBarActiveTintColor: 'tomato',
+    tabBarInactiveTintColor: 'grey'
+  }
+}
+
 export default function App() {
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular
@@ -45,7 +63,9 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <Tab.Navigator>
+          <Tab.Navigator
+            screenOptions={createScreenOptions}
+          >
             <Tab.Screen
               name='Restaurants'
               component={Restaurants}
