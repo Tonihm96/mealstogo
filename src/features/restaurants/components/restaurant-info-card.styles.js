@@ -6,6 +6,7 @@ export const RestaurantCard = styled(Card)`
   background-color: ${(props) =>
     props.theme.colors.bg.primary};
 `
+
 export const RestaurantCardContent = styled(Card.Content)`
   background-color: ${(props) =>
     props.theme.colors.bg.primary};

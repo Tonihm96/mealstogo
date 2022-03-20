@@ -17,13 +17,8 @@ import {
 import { SafeArea } from './src/components/utility/safe-area.component'
 import { theme } from './src/infrastructure/theme'
 import { Restaurants } from './src/features/restaurants/screens/restaurants.screen'
-//import { Map } from './src/features/map/screens/map.screen'
+import { Map } from './src/features/map/screens/map.screen'
 
-const Map = () => (
-  <SafeArea>
-    <Text>teste</Text>
-  </SafeArea>
-)
 const Settings = () => (
   <SafeArea>
     <Text>teste</Text>
