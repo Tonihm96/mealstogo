@@ -1,6 +1,5 @@
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar'
 import React from 'react'
-import { Text } from 'react-native'
 import { ThemeProvider } from 'styled-components/native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -14,16 +13,10 @@ import {
   useFonts as useLato,
   Lato_400Regular
 } from '@expo-google-fonts/lato'
-import { SafeArea } from './src/components/utility/safe-area.component'
 import { theme } from './src/infrastructure/theme'
 import { Restaurants } from './src/features/restaurants/screens/restaurants.screen'
 import { Map } from './src/features/map/screens/map.screen'
-
-const Settings = () => (
-  <SafeArea>
-    <Text>teste</Text>
-  </SafeArea>
-)
+import { Settings } from './src/features/settings/screens/settings.screen'
 
 const Tab = createBottomTabNavigator()
 
@@ -40,7 +33,8 @@ const createScreenOptions = ({ route }) => {
       <Ionicons name={iconName} size={size} color={color} />
     ),
     tabBarActiveTintColor: 'tomato',
-    tabBarInactiveTintColor: 'grey'
+    tabBarInactiveTintColor: 'grey',
+    headerShown: false
   }
 }
 
