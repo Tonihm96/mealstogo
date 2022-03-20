@@ -69,7 +69,7 @@
       "place_id": "some place id 2",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "reference": "",
       "scope": "",
@@ -119,7 +119,7 @@
       "place_id": "some place id 3",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "rating": 4.3,
       "reference": "",
@@ -395,13 +395,18 @@
       "place_id": "some place id 10",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "price_level": 4,
       "rating": 4.7,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
       "user_ratings_total": 152,
       "vicinity": "Reyndersstraat 24, Antwerpen"
     },
@@ -439,7 +444,7 @@
       "place_id": "some place id 11",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "price_level": 2,
       "rating": 4.2,
@@ -489,7 +494,7 @@
       "place_id": "some place id 12",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "price_level": 2,
       "rating": 4.2,
@@ -539,13 +544,18 @@
       "place_id": "some place id 13",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "price_level": 3,
       "rating": 4.5,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
       "user_ratings_total": 316,
       "vicinity": "Oudeleeuwenrui 12, Antwerpen"
     },
@@ -583,13 +593,18 @@
       "place_id": "some place id 14",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "price_level": 3,
       "rating": 4.1,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
       "user_ratings_total": 1274,
       "vicinity": "Hopland 2, Antwerpen"
     },
@@ -627,13 +642,18 @@
       "place_id": "some place id 15",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "price_level": 4,
       "rating": 4.4,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
       "user_ratings_total": 311,
       "vicinity": "Oude Koornmarkt 16, Antwerpen"
     },
@@ -671,7 +691,7 @@
       "place_id": "some place id 16",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "rating": 4.9,
       "reference": "",
@@ -722,7 +742,7 @@
       "place_id": "some place id 17",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "price_level": 2,
       "rating": 4.1,
@@ -772,13 +792,18 @@
       "place_id": "some place id 18",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "price_level": 4,
       "rating": 4.7,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
       "user_ratings_total": 362,
       "vicinity": "Leopoldstraat 24, Antwerpen"
     },
@@ -816,13 +841,18 @@
       "place_id": "some place id 19",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "price_level": 2,
       "rating": 3.9,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
       "user_ratings_total": 4311,
       "vicinity": "Jan Blomstraat 8, Antwerpen"
     },
@@ -860,13 +890,18 @@
       "place_id": "some place id 20",
       "plus_code": {
         "compound_code": "",
-        "global_code": "",
+        "global_code": ""
       },
       "price_level": 3,
       "rating": 4.6,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
       "user_ratings_total": 151,
       "vicinity": "Reyndersstraat 17, Antwerpen"
     }

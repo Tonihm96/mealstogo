@@ -16,7 +16,7 @@ import { Text } from '../../../components/typography/text.component'
 import star from '../../../../assets/star'
 import open from '../../../../assets/open'
 
-export const RestaurantInfo = ({ restaurant = {} }) => {
+export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = 'A Very Very Long Restaurant Title For Testing Purposes',
     icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
