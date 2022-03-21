@@ -1,14 +1,13 @@
-import React, { useContext } from 'react'
-import { Searchbar } from 'react-native-paper'
+import React, { useContext, useState } from 'react'
+import { ActivityIndicator } from 'react-native-paper'
 import styled from 'styled-components/native'
 
+import { theme } from '../../../infrastructure/theme'
 import { SafeArea } from '../../../components/utility/safe-area.component'
+import { Search } from '../components/search.component'
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component'
-import { RestaurantsContext } from '../../../services/restaurants/restaurants.context'
 
-const Search = styled.View`
-  padding: ${(props) => props.theme.spacing[3]};
-`
+import { RestaurantsContext } from '../../../services/restaurants/restaurants.context'
 
 const RestaurantList = styled.FlatList.attrs({
   contentContainerStyle: {
@@ -16,24 +15,42 @@ const RestaurantList = styled.FlatList.attrs({
   }
 })``
 
+const Loading = styled(ActivityIndicator)`
+  flex: 1;
+`
+
 export const Restaurants = () => {
-  const { restaurants, isLoading, error } = useContext(
-    RestaurantsContext
-  )
+  const {
+    restaurants,
+    isLoading,
+    error,
+    retrieveRestaurants
+  } = useContext(RestaurantsContext)
+  const [refreshing, setRefreshing] = useState(false)
 
   return (
     <SafeArea>
-      <Search>
-        <Searchbar />
-      </Search>
-      <RestaurantList
-        data={restaurants}
-        renderItem={({ item }) => {
-          console.log(item)
-          return <RestaurantInfoCard restaurant={item} />
-        }}
-        keyExtractor={(item) => item.name}
-      />
+      <Search />
+      {isLoading ? (
+        <Loading
+          color={theme.colors.brand.primary}
+          size='large'
+        />
+      ) : (
+        <RestaurantList
+          onRefresh={() => {
+            setRefreshing(true)
+            retrieveRestaurants()
+            setRefreshing(false)
+          }}
+          refreshing={refreshing}
+          data={restaurants}
+          renderItem={({ item }) => (
+            <RestaurantInfoCard restaurant={item} />
+          )}
+          keyExtractor={(item) => item.name}
+        />
+      )}
     </SafeArea>
   )
 }

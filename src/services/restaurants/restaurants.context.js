@@ -32,7 +32,7 @@ export const RestaurantsContextProvider = ({
           setError(error)
           setIsLoading(false)
         })
-    }, 2000)
+    }, 1000)
   }
 
   useEffect(() => {
@@ -44,7 +44,8 @@ export const RestaurantsContextProvider = ({
       value={{
         restaurants,
         isLoading,
-        error
+        error,
+        retrieveRestaurants
       }}
     >
       {children}
