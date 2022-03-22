@@ -26,23 +26,18 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     isOpenNow = true,
     //openingHours = '',
     rating = 3.6,
-    isClosedTemporarily = true
+    isClosedTemporarily = true,
+    placeId
   } = restaurant
 
-  const ratingArray = Array.from(
-    new Array(Math.floor(rating))
-  )
+  const ratingArray = Array.from(Array(Math.round(rating)).keys())
 
   return (
     <RestaurantCard elevation={15}>
       <RestaurantCardCover source={{ uri: photos[0] }} />
       <RestaurantCardContent>
         <Spacer position='top' size='large' />
-        <Text
-          numberOfLines={1}
-          ellipsizeMode='tail'
-          variant='label'
-        >
+        <Text numberOfLines={1} ellipsizeMode='tail' variant='label'>
           {name}
         </Text>
         <Spacer position='bottom' size='large' />
@@ -50,7 +45,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
           <RatingView>
             {ratingArray.map((_, idx) => (
               <SvgXml
-                key={idx}
+                key={`${placeId}-star-${idx}`}
                 xml={star}
                 width={20}
                 height={20}
@@ -59,20 +54,13 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
           </RatingView>
           <InfoIcons>
             {isClosedTemporarily && (
-              <Text variant='error'>
-                CLOSED TEMPORARILY
-              </Text>
+              <Text variant='error'>CLOSED TEMPORARILY</Text>
             )}
             <Spacer position='left' size='large'>
-              {isOpenNow && (
-                <SvgXml xml={open} width={20} height={20} />
-              )}
+              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
             </Spacer>
             <Spacer position='left' size='large'>
-              <Image
-                style={{ width: 15, height: 15 }}
-                source={{ uri: icon }}
-              />
+              <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
             </Spacer>
           </InfoIcons>
         </Section>
