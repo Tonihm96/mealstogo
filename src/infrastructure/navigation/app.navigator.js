@@ -5,8 +5,9 @@ import { Ionicons } from '@expo/vector-icons'
 
 import { theme } from '../theme'
 import { Map } from '../../features/map/screens/map.screen'
-import { Restaurants } from '../../features/restaurants/screens/restaurants.screen'
 import { Settings } from '../../features/settings/screens/settings.screen'
+
+import { RestaurantsNavigator } from './restaurants.navigator'
 
 const Tab = createBottomTabNavigator()
 
@@ -31,7 +32,7 @@ const createScreenOptions = ({ route }) => {
 export const AppNavigator = () => (
   <NavigationContainer>
     <Tab.Navigator screenOptions={createScreenOptions}>
-      <Tab.Screen name='Restaurants' component={Restaurants} />
+      <Tab.Screen name='RestaurantsTab' component={RestaurantsNavigator} />
       <Tab.Screen name='Map' component={Map} />
       <Tab.Screen name='Settings' component={Settings} />
     </Tab.Navigator>
