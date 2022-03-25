@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { TouchableOpacity } from 'react-native'
 import { ActivityIndicator } from 'react-native-paper'
 import styled from 'styled-components/native'
 
@@ -19,23 +20,16 @@ const Loading = styled(ActivityIndicator)`
   flex: 1;
 `
 
-export const Restaurants = () => {
-  const {
-    restaurants,
-    isLoading,
-    error,
-    retrieveRestaurants
-  } = useContext(RestaurantsContext)
+export const Restaurants = ({ navigation }) => {
+  const { restaurants, isLoading, error, retrieveRestaurants } =
+    useContext(RestaurantsContext)
   const [refreshing, setRefreshing] = useState(false)
 
   return (
     <SafeArea>
       <Search />
       {isLoading ? (
-        <Loading
-          color={theme.colors.brand.primary}
-          size='large'
-        />
+        <Loading color={theme.colors.brand.primary} size='large' />
       ) : (
         <RestaurantList
           onRefresh={() => {
@@ -46,7 +40,13 @@ export const Restaurants = () => {
           refreshing={refreshing}
           data={restaurants}
           renderItem={({ item }) => (
-            <RestaurantInfoCard restaurant={item} />
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('RestaurantDetail', { restaurant: item })
+              }}
+            >
+              <RestaurantInfoCard restaurant={item} />
+            </TouchableOpacity>
           )}
           keyExtractor={(item) => item.name}
         />
