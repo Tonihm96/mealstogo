@@ -12,7 +12,11 @@ import { RestaurantDetail } from '../../features/restaurants/screens/restaurant-
 const RestaurantStack = createStackNavigator()
 
 const screenOptions = {
-  headerShown: false
+  headerShown: false,
+  gestureEnabled: true,
+  gestureDirection: 'vertical',
+  animation: 'slide_from_bottom',
+  presentation: 'modal'
 }
 
 export const RestaurantsNavigator = () => {
@@ -23,12 +27,6 @@ export const RestaurantsNavigator = () => {
         component={Restaurants}
       ></RestaurantStack.Screen>
       <RestaurantStack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection: 'vertical',
-          animation: 'slide_from_bottom',
-          presentation: 'modal'
-        }}
         name='RestaurantDetail'
         component={RestaurantDetail}
       ></RestaurantStack.Screen>
