@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native'
 import { List } from 'react-native-paper'
-import { Ionicons } from '@expo/vector-icons'
 
 import { SafeArea } from '../../../components/utility/safe-area.component'
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component'
