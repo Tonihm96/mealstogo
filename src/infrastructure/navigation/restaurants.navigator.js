@@ -1,11 +1,15 @@
 import React from 'react'
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import {
+  createStackNavigator,
+  TransitionSpecs,
+  TransitionPresets
+} from '@react-navigation/stack'
 
 import { Restaurants } from '../../features/restaurants/screens/restaurants.screen'
 import { RestaurantDetail } from '../../features/restaurants/screens/restaurant-detail.screen'
 
-const RestaurantStack = createNativeStackNavigator()
+const RestaurantStack = createStackNavigator()
 
 const screenOptions = {
   headerShown: false
@@ -19,7 +23,12 @@ export const RestaurantsNavigator = () => {
         component={Restaurants}
       ></RestaurantStack.Screen>
       <RestaurantStack.Screen
-        options={{ animation: 'slide_from_bottom', presentation: 'modal' }}
+        options={{
+          gestureEnabled: true,
+          gestureDirection: 'vertical',
+          animation: 'slide_from_bottom',
+          presentation: 'modal'
+        }}
         name='RestaurantDetail'
         component={RestaurantDetail}
       ></RestaurantStack.Screen>
