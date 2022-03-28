@@ -25,11 +25,11 @@ export const RestaurantsNavigator = () => {
       <RestaurantStack.Screen
         name='RestaurantsScreen'
         component={Restaurants}
-      ></RestaurantStack.Screen>
+      />
       <RestaurantStack.Screen
         name='RestaurantDetail'
         component={RestaurantDetail}
-      ></RestaurantStack.Screen>
+      />
     </RestaurantStack.Navigator>
   )
 }

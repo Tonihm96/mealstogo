@@ -10,6 +10,7 @@ import {
   RestaurantCardCover,
   RestaurantCardContent
 } from './restaurant-info-card.styles'
+import { Favourite } from '../../../components/favourites/favourite.component'
 import { Spacer } from '../../../components/spacer/spacer.component'
 import { Text } from '../../../components/typography/text.component'
 import star from '../../../../assets/star'
@@ -34,6 +35,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <RestaurantCard elevation={15}>
+      <Favourite restaurant={restaurant} />
       <RestaurantCardCover source={{ uri: photos[0] }} />
       <RestaurantCardContent>
         <Spacer position='top' size='large' />
