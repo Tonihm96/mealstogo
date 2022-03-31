@@ -1,9 +1,14 @@
-import React from 'react'
-import { Text } from 'react-native'
+import React, { useContext } from 'react'
+import { Button } from 'react-native'
 import { SafeArea } from '../../../components/utility/safe-area.component'
 
-export const Settings = () => (
-  <SafeArea>
-    <Text>Settings</Text>
-  </SafeArea>
-)
+import { AuthenticationContext } from '../../../services/authentication/authentication.context'
+
+export const Settings = () => {
+  const { isLoading, error, onLogout } = useContext(AuthenticationContext)
+  return (
+    <SafeArea>
+      <Button title='logout' onPress={() => onLogout()} />
+    </SafeArea>
+  )
+}

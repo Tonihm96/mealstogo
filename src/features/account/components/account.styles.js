@@ -34,6 +34,11 @@ export const AccountContainer = styled.View`
   margin-top: ${(props) => props.theme.spacing[2]};
 `
 
+export const ErrorContainer = styled.View`
+  width: ${Dimensions.get('window').width * 0.65}px;
+  margin-bottom: ${(props) => props.theme.spacing[3]};
+`
+
 export const AuthButton = styled(Button).attrs({
   color: colors.brand.primary,
   mode: 'contained'
@@ -42,5 +47,5 @@ export const AuthButton = styled(Button).attrs({
 `
 
 export const AuthInput = styled(TextInput).attrs({})`
-  width: ${Dimensions.get('window').width / 2}px;
+  width: ${Dimensions.get('window').width * 0.65}px;
 `

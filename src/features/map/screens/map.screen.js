@@ -48,7 +48,6 @@ export const MapScreen = ({ navigation }) => {
     <>
       <Search />
       <Map
-        userInterfaceStyle='dark'
         region={{
           latitude: lat,
           longitude: lng,
