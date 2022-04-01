@@ -5,6 +5,6 @@ export const SafeArea = styled.SafeAreaView`
   flex: 1;
   flex-direction: column;
   align-items: stretch;
-  ${StatusBar.currentHeight &&
-  `padding-top: ${StatusBar.currentHeight}px;`}
+  ${StatusBar.currentHeight && `padding-top: ${StatusBar.currentHeight}px;`}
+  background-color: ${(props) => props.theme.colors.bg.primary};
 `

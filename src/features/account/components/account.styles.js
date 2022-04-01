@@ -49,3 +49,10 @@ export const AuthButton = styled(Button).attrs({
 export const AuthInput = styled(TextInput).attrs({})`
   width: ${Dimensions.get('window').width * 0.65}px;
 `
+
+export const AnimationWrapper = styled.View`
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  top: 10%;
+`
