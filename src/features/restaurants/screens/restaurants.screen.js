@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { Pressable } from 'react-native'
 import { ActivityIndicator } from 'react-native-paper'
 import styled from 'styled-components/native'
 
@@ -51,7 +51,7 @@ export const Restaurants = ({ navigation }) => {
             setRefreshing(false)
           }}
           renderItem={({ item }) => (
-            <TouchableOpacity
+            <Pressable
               onPress={() => {
                 navigation.navigate('RestaurantDetail', { restaurant: item })
               }}
@@ -59,7 +59,7 @@ export const Restaurants = ({ navigation }) => {
               <FadeInView>
                 <RestaurantInfoCard restaurant={item} />
               </FadeInView>
-            </TouchableOpacity>
+            </Pressable>
           )}
           keyExtractor={(item) => item.name}
           ItemSeparatorComponent={() => <Spacer position='top' size='large' />}
