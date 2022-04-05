@@ -34,7 +34,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const ratingArray = Array.from(Array(Math.round(rating)).keys())
 
   return (
-    <RestaurantCard elevation={15}>
+    <RestaurantCard elevation={10}>
       <Favourite restaurant={restaurant} />
       <RestaurantCardCover source={{ uri: photos[0] }} />
       <RestaurantCardContent>

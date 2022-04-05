@@ -10,15 +10,10 @@ import { FavouritesBar } from '../../../components/favourites/favourites-bar.com
 
 import { Search } from '../components/search.component'
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component'
+import { RestaurantList } from '../components/restaurant-list.styles'
 
 import { RestaurantsContext } from '../../../services/restaurants/restaurants.context'
 import { FavouritesContext } from '../../../services/favourites/favourites.context'
-
-const RestaurantList = styled.FlatList.attrs({
-  contentContainerStyle: {
-    padding: 16
-  }
-})``
 
 const Loading = styled(ActivityIndicator)`
   flex: 1;
@@ -47,13 +42,13 @@ export const Restaurants = ({ navigation }) => {
         <Loading color={theme.colors.brand.primary} size='large' />
       ) : (
         <RestaurantList
+          data={restaurants}
+          refreshing={refreshing}
           onRefresh={() => {
             setRefreshing(true)
             retrieveRestaurants()
             setRefreshing(false)
           }}
-          refreshing={refreshing}
-          data={restaurants}
           renderItem={({ item }) => (
             <Pressable
               onPress={() => {
