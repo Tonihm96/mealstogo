@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react'
-import { Pressable } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { ActivityIndicator } from 'react-native-paper'
 import styled from 'styled-components/native'
 
 import { theme } from '../../../infrastructure/theme'
 import { SafeArea } from '../../../components/utility/safe-area.component'
+import { FadeInView } from '../../../components/animations/fade.animation'
 import { Spacer } from '../../../components/spacer/spacer.component'
 import { FavouritesBar } from '../../../components/favourites/favourites-bar.component'
 
@@ -50,13 +51,15 @@ export const Restaurants = ({ navigation }) => {
             setRefreshing(false)
           }}
           renderItem={({ item }) => (
-            <Pressable
+            <TouchableOpacity
               onPress={() => {
                 navigation.navigate('RestaurantDetail', { restaurant: item })
               }}
             >
-              <RestaurantInfoCard restaurant={item} />
-            </Pressable>
+              <FadeInView>
+                <RestaurantInfoCard restaurant={item} />
+              </FadeInView>
+            </TouchableOpacity>
           )}
           keyExtractor={(item) => item.name}
           ItemSeparatorComponent={() => <Spacer position='top' size='large' />}
