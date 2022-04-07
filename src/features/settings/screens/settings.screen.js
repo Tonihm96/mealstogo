@@ -1,8 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
 import styled from 'styled-components/native'
 import { AntDesign } from '@expo/vector-icons'
 import { List, Avatar } from 'react-native-paper'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { SafeArea } from '../../../components/utility/safe-area.component'
 import { Spacer } from '../../../components/spacer/spacer.component'
@@ -21,15 +23,39 @@ const AvatarContainer = styled.View`
 
 export const SettingsScreen = ({ navigation }) => {
   const { onLogout, user } = useContext(AuthenticationContext)
+
+  const [photo, setPhoto] = useState(null)
+
+  const getProfilePicure = async (currentUser) => {
+    try {
+      const photoUri = await AsyncStorage.getItem(`${currentUser.uid}-photo`)
+      setPhoto(photoUri)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useFocusEffect(() => {
+    getProfilePicure(user)
+  })
+
   return (
     <SafeArea>
       <AvatarContainer>
         <TouchableOpacity onPress={() => navigation.navigate('CameraScreen')}>
-          <Avatar.Icon
-            size={180}
-            icon={() => <AntDesign name='user' size={120} color='white' />}
-            backgroundColor='#2182BD'
-          />
+          {photo ? (
+            <Avatar.Image
+              size={180}
+              source={{ uri: photo }}
+              backgroundColor='#2182BD'
+            />
+          ) : (
+            <Avatar.Icon
+              size={180}
+              icon={() => <AntDesign name='user' size={120} color='white' />}
+              backgroundColor='#2182BD'
+            />
+          )}
         </TouchableOpacity>
         <Spacer position='top' size='large' />
         <Text variant='label'>{user.email}</Text>

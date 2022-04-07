@@ -48,7 +48,7 @@ export const FavouritesContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (user && user.uid && favourites.length) {
-      saveFavourites(favourites, user.providerData[0].uid)
+      saveFavourites(favourites, user.uid)
     }
   }, [favourites, user])
 
