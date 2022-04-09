@@ -24,7 +24,7 @@ export const FavouritesScreen = ({ navigation }) => {
       renderItem={({ item }) => (
         <Pressable
           onPress={() => {
-            navigation.navigate('RestaurantDetail', { restaurant: item })
+            navigation.navigate('FavouriteDetailsScreen', { restaurant: item })
           }}
         >
           <RestaurantInfoCard restaurant={item} />

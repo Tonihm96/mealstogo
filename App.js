@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler'
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar'
 import React from 'react'
+import { LogBox } from 'react-native'
 import { ThemeProvider } from 'styled-components/native'
 import { initializeApp, getApps } from 'firebase/app'
 
@@ -14,6 +15,8 @@ import { theme } from './src/infrastructure/theme'
 import { Navigation } from './src/infrastructure/navigation'
 
 import { AuthenticationContextProvider } from './src/services/authentication/authentication.context'
+
+LogBox.ignoreLogs(['AsyncStorage'])
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCt5h2lShgeB5h6zjHjJ4jLWj96Q5DGlAs',
