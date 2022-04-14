@@ -13,6 +13,7 @@ import { Search } from '../components/search.component'
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component'
 import { RestaurantList } from '../components/restaurant-list.styles'
 
+import { LocationContext } from '../../../services/location/location.context'
 import { RestaurantsContext } from '../../../services/restaurants/restaurants.context'
 import { FavouritesContext } from '../../../services/favourites/favourites.context'
 
@@ -23,6 +24,7 @@ const Loading = styled(ActivityIndicator)`
 export const Restaurants = ({ navigation }) => {
   const { restaurants, isLoading, retrieveRestaurants } =
     useContext(RestaurantsContext)
+  const { location } = useContext(LocationContext)
   const { favourites } = useContext(FavouritesContext)
   const [isToggled, setIsToggled] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
@@ -46,8 +48,9 @@ export const Restaurants = ({ navigation }) => {
           data={restaurants}
           refreshing={refreshing}
           onRefresh={() => {
+            const locationString = `${location.lat},${location.lng}`
             setRefreshing(true)
-            retrieveRestaurants()
+            retrieveRestaurants(locationString)
             setRefreshing(false)
           }}
           renderItem={({ item }) => (

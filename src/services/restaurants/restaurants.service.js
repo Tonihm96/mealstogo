@@ -3,8 +3,8 @@ import { host } from '../../utils/env'
 
 export const restaurantsRequest = (location) => {
   return fetch(`${host}/placesNearby?location=${location}`)
-    .then((response) => {
-      return response.json()
+    .then((res) => {
+      return res.json()
     })
     .catch((err) => {
       console.error(err)

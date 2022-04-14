@@ -20,7 +20,7 @@ const mockImages = [
   'https://www.foodiesfeed.com/wp-content/uploads/2019/02/pizza-ready-for-baking-600x400.jpg'
 ]
 
-module.exports.addMockImages = (restaurant) => {
+module.exports.addMockImage = (restaurant) => {
   const randomImage = mockImages[Math.ceil(Math.random() * mockImages.length)]
   restaurant.photos = [randomImage]
   return restaurant
