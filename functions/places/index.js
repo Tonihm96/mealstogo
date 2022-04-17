@@ -3,20 +3,28 @@ const url = require('url')
 const functions = require('firebase-functions')
 
 const addGoogleImage = (restaurant) => {
+  if (!restaurant.photos) {
+    restaurant.photos = [
+      'https://xn--80aadc3bb0afph5eue.xn--p1ai/images/no_photo.png'
+    ]
+    return restaurant
+  }
+
   const ref = restaurant.photos[0].photo_reference
 
   if (!ref) {
     restaurant.photos = [
-      'https://jurissistemadeensino.com/wp-content/themes/juris/assets/images/not-found.jpg'
+      'https://xn--80aadc3bb0afph5eue.xn--p1ai/images/no_photo.png'
     ]
     return restaurant
   }
 
   restaurant.photos = [
-    `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${ref}&key=${
+    `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${ref}&key=${
       functions.config().google.key
     }`
   ]
+
   return restaurant
 }
 
@@ -42,7 +50,7 @@ module.exports.placesRequest = (request, response, client) => {
       timeout: 1000
     })
     .then((res) => {
-      res.data.results = res.data.results.map(addMockImage)
+      res.data.results = res.data.results.map(addGoogleImage)
       return response.json(res.data)
     })
     .catch((err) => {
