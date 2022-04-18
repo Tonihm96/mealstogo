@@ -1,6 +1,11 @@
 import React, { useState, useEffect, createContext } from 'react'
+import * as Location from 'expo-location'
 
-import { locationRequest, locationTransform } from './location.service'
+import {
+  currentLocationRequest,
+  locationRequest,
+  locationTransform
+} from './location.service'
 
 export const LocationContext = createContext()
 
@@ -8,7 +13,35 @@ export const LocationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
   const [location, setLocation] = useState(null)
-  const [keyword, setKeyword] = useState('3213¬¢¬¢¢¬¢GSUYGAyusgUAYGSa8756')
+  const [keyword, setKeyword] = useState('Joaçaba')
+
+  /*useEffect(async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync()
+    if (status !== 'granted') {
+      console.error('Location permission denied')
+      return
+    }
+
+    let curLocation = await Location.getCurrentPositionAsync({}).then()
+
+    let exctractedLocation = {
+      lat: curLocation.coords.latitude,
+      lng: curLocation.coords.longitude,
+      viewport: {
+        northeast: {
+          lat: curLocation.coords.latitude,
+          lng: curLocation.coords.longitude
+        },
+        southwest: {
+          lat: curLocation.coords.latitude,
+          lng: curLocation.coords.longitude
+        }
+      }
+    }
+
+    setLocation(exctractedLocation)
+    //setKeyword()
+  }, [])*/
 
   const onSearch = (searchKeyword) => {
     setIsLoading(true)

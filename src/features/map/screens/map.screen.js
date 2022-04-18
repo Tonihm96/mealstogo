@@ -87,12 +87,17 @@ export const MapScreen = ({ navigation }) => {
   const { location } = useContext(LocationContext)
   if (!location) {
     return (
-      <Map
-        region={{
-          latitude: 0,
-          longitude: 0
-        }}
-      />
+      <>
+        <Search />
+        <Map
+          region={{
+            latitude: 0,
+            longitude: 0,
+            latitudeDelta: 1,
+            longitudeDelta: 1
+          }}
+        />
+      </>
     )
   }
 

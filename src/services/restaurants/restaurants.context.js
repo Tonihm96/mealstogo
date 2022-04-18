@@ -23,6 +23,7 @@ export const RestaurantsContextProvider = ({ children }) => {
         setIsLoading(false)
       })
       .catch((error) => {
+        setRestaurants([])
         setError(error)
         setIsLoading(false)
       })

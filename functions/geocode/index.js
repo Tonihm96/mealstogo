@@ -2,6 +2,30 @@ const { locations: locationsMock } = require('./geocode.mock')
 const url = require('url')
 const functions = require('firebase-functions')
 
+module.exports.reverseGeocodeRequest = (request, response, client) => {
+  const { location, mock } = url.parse(request.url, true).query
+
+  if (mock === 'true') {
+    return
+  }
+
+  client
+    .geocode({
+      params: {
+        latlng: location,
+        key: functions.config().google.key
+      },
+      timeout: 1000
+    })
+    .then((res) => {
+      return response.json(res.data)
+    })
+    .catch((err) => {
+      response.status(400)
+      return response.send(err.response.data.error_message)
+    })
+}
+
 module.exports.geocodeRequest = (request, response, client) => {
   const { city, mock } = url.parse(request.url, true).query
 
