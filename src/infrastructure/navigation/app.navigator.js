@@ -10,6 +10,7 @@ import { FavouritesContextProvider } from '../../services/favourites/favourites.
 
 import { RestaurantsNavigator } from './restaurants.navigator'
 import { MapScreen } from '../../features/map/screens/map.screen'
+import { CheckoutScreen } from '../../features/checkout/screens/checkout.screen'
 import { SettingsNavigator } from './settings.navigator'
 
 const Tab = createBottomTabNavigator()
@@ -17,6 +18,7 @@ const Tab = createBottomTabNavigator()
 const TAB_ICON = {
   Restaurants: 'restaurant',
   Map: 'map',
+  Checkout: 'cart',
   Settings: 'settings'
 }
 
@@ -38,6 +40,7 @@ export const AppNavigator = () => (
       <RestaurantsContextProvider>
         <Tab.Navigator screenOptions={createScreenOptions}>
           <Tab.Screen name='Restaurants' component={RestaurantsNavigator} />
+          <Tab.Screen name='Checkout' component={CheckoutScreen} />
           <Tab.Screen name='Map' component={MapScreen} />
           <Tab.Screen name='Settings' component={SettingsNavigator} />
         </Tab.Navigator>
