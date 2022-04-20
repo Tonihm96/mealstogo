@@ -24,8 +24,6 @@ export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
           search(searchKeyword)
         }}
         onChangeText={(text) => {
-          if (!text.length) {
-          }
           setSearchKeyword(text)
         }}
       />

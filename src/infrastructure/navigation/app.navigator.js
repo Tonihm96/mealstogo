@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 import { theme } from '../theme'
 
+import { CartContextProvider } from '../../services/cart/cart.context'
 import { RestaurantsContextProvider } from '../../services/restaurants/restaurants.context'
 import { LocationContextProvider } from '../../services/location/location.context'
 import { FavouritesContextProvider } from '../../services/favourites/favourites.context'
@@ -38,12 +39,14 @@ export const AppNavigator = () => (
   <FavouritesContextProvider>
     <LocationContextProvider>
       <RestaurantsContextProvider>
-        <Tab.Navigator screenOptions={createScreenOptions}>
-          <Tab.Screen name='Restaurants' component={RestaurantsNavigator} />
-          <Tab.Screen name='Checkout' component={CheckoutScreen} />
-          <Tab.Screen name='Map' component={MapScreen} />
-          <Tab.Screen name='Settings' component={SettingsNavigator} />
-        </Tab.Navigator>
+        <CartContextProvider>
+          <Tab.Navigator screenOptions={createScreenOptions}>
+            <Tab.Screen name='Restaurants' component={RestaurantsNavigator} />
+            <Tab.Screen name='Checkout' component={CheckoutScreen} />
+            <Tab.Screen name='Map' component={MapScreen} />
+            <Tab.Screen name='Settings' component={SettingsNavigator} />
+          </Tab.Navigator>
+        </CartContextProvider>
       </RestaurantsContextProvider>
     </LocationContextProvider>
   </FavouritesContextProvider>

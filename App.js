@@ -17,6 +17,7 @@ import { Navigation } from './src/infrastructure/navigation'
 import { AuthenticationContextProvider } from './src/services/authentication/authentication.context'
 
 LogBox.ignoreLogs(['AsyncStorage'])
+LogBox.ignoreLogs(['componentWillReceiveProps'])
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCt5h2lShgeB5h6zjHjJ4jLWj96Q5DGlAs',
