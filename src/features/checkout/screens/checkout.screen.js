@@ -9,12 +9,29 @@ import { Spacer } from '../../../components/spacer/spacer.component'
 import { Text } from '../../../components/typography/text.component'
 
 import { RestaurantInfoCard } from '../../restaurants/components/restaurant-info-card.component'
+import { payRequest } from '../../../services/checkout/checkout.service'
 import { CreditCardInput } from './components/credit-card.component'
-import { CartIconContainer, CartIcon } from './components/checkout.styles'
+import {
+  CartIconContainer,
+  CartIcon,
+  NameInput,
+  PayButton,
+  ClearButton
+} from './components/checkout.styles'
 
 export const CheckoutScreen = () => {
+  const { cart, restaurant, clearCart } = useContext(CartContext)
   const [sum, setSum] = useState(0)
-  const { cart, restaurant } = useContext(CartContext)
+  const [name, setName] = useState('')
+  const [card, setCard] = useState(null)
+
+  const onPay = () => {
+    if (!card || !card.id) {
+      console.log('error')
+      return
+    }
+    payRequest(card.id, sum, name)
+  }
 
   useEffect(() => {
     if (!cart.length) {
@@ -37,6 +54,7 @@ export const CheckoutScreen = () => {
       </SafeArea>
     )
   }
+
   return (
     <SafeArea>
       <RestaurantInfoCard restaurant={restaurant} />
@@ -57,7 +75,21 @@ export const CheckoutScreen = () => {
             <Text>Total: $ {sum / 100}</Text>
           </Spacer>
         </Spacer>
-        <CreditCardInput />
+        <NameInput
+          label='Name'
+          value={name}
+          onChangeText={(text) => setName(text)}
+        />
+        <Spacer position='top' size='large' />
+        {name.length > 0 && <CreditCardInput name={name} onSuccess={setCard} />}
+        <Spacer position='top' size='xxl' />
+        <PayButton icon='cash-usd' onPress={onPay}>
+          Pay
+        </PayButton>
+        <Spacer position='top' size='large' />
+        <ClearButton icon='cart-off' onPress={clearCart}>
+          Clear Cart
+        </ClearButton>
       </ScrollView>
     </SafeArea>
   )

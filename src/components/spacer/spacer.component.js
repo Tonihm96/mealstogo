@@ -4,7 +4,9 @@ import styled, { useTheme } from 'styled-components/native'
 const sizeVariant = {
   small: 1,
   medium: 2,
-  large: 3
+  large: 3,
+  xl: 4,
+  xxl: 5
 }
 
 const positionVariant = {
@@ -30,9 +32,7 @@ export const Spacer = ({ position, size, children }) => {
   const theme = useTheme()
   const variant = getVariant(position, size, theme)
 
-  return (
-    <SpacerView variant={variant}>{children}</SpacerView>
-  )
+  return <SpacerView variant={variant}>{children}</SpacerView>
 }
 
 Spacer.defaultProps = {
