@@ -22,12 +22,11 @@ import {
 } from './components/checkout.styles'
 
 export const CheckoutScreen = ({ navigation }) => {
-  const { cart, restaurant, clearCart } = useContext(CartContext)
-  const [sum, setSum] = useState(0)
+  const { cart, restaurant, clearCart, sum } = useContext(CartContext)
   const [name, setName] = useState('')
   const [card, setCard] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState()
+  const [error, setError] = useState(null)
 
   const onPay = () => {
     setIsLoading(true)
@@ -48,17 +47,6 @@ export const CheckoutScreen = ({ navigation }) => {
         navigation.navigate('CheckoutError', { err })
       })
   }
-
-  useEffect(() => {
-    if (!cart.length) {
-      setSum(0)
-    } else {
-      const newSum = cart.reduce((acc, { price }) => {
-        return (acc += price)
-      }, 0)
-      setSum(newSum)
-    }
-  }, [cart])
 
   if (!cart.length || !restaurant) {
     return (
@@ -83,9 +71,10 @@ export const CheckoutScreen = ({ navigation }) => {
         <Spacer position='left' size='medium'>
           <Spacer position='top' size='medium'>
             <List.Section>
-              {cart.map(({ item, price }) => {
+              {cart.map(({ item, price }, idx) => {
                 return (
                   <List.Item
+                    key={`item-${idx}`}
                     title={`${
                       item.charAt(0).toUpperCase() + item.slice(1)
                     } - $ ${price / 100}`}
@@ -121,6 +110,7 @@ export const CheckoutScreen = ({ navigation }) => {
         <ClearButton disabled={isLoading} icon='cart-off' onPress={clearCart}>
           Clear Cart
         </ClearButton>
+        <Spacer position='top' size='large' />
       </ScrollView>
     </SafeArea>
   )

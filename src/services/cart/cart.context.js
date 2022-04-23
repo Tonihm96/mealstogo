@@ -6,10 +6,11 @@ import { AuthenticationContext } from '../authentication/authentication.context'
 export const CartContext = createContext()
 
 export const CartContextProvider = ({ children }) => {
-  const { use } = useContext(AuthenticationContext)
+  const { user } = useContext(AuthenticationContext)
 
   const [cart, setCart] = useState([])
   const [restaurant, setRestaurant] = useState(null)
+  const [sum, setSum] = useState(0)
 
   const add = (item, rest) => {
     if (!restaurant || restaurant.placeId !== rest.placeId) {
@@ -25,9 +26,55 @@ export const CartContextProvider = ({ children }) => {
     setRestaurant(null)
   }
 
+  const saveCart = async (rest, crt, uid) => {
+    try {
+      const jsonValue = JSON.stringify({ restaurant: rest, cart: crt })
+
+      await AsyncStorage.setItem(`@cart-${uid}`, jsonValue)
+    } catch (e) {
+      console.log('Error storing cart: ' + e)
+    }
+  }
+
+  const loadCart = async (uid) => {
+    try {
+      const value = await AsyncStorage.getItem(`@cart-${uid}`)
+      if (value !== null) {
+        const { restaurant: rest, cart: crt } = JSON.parse(value)
+        setRestaurant(rest)
+        setCart(crt)
+      }
+    } catch (e) {
+      console.log('Error loading cart: ' + e)
+    }
+  }
+
+  useEffect(() => {
+    if (user && user.uid) {
+      loadCart(user.uid)
+    }
+  }, [user])
+
+  useEffect(() => {
+    if (user && user.uid) {
+      saveCart(restaurant, cart, user.uid)
+    }
+  }, [restaurant, cart, user])
+
+  useEffect(() => {
+    if (!cart.length) {
+      setSum(0)
+    } else {
+      const newSum = cart.reduce((acc, { price }) => {
+        return (acc += price)
+      }, 0)
+      setSum(newSum)
+    }
+  }, [cart])
+
   return (
     <CartContext.Provider
-      value={{ addToCart: add, clearCart: clear, restaurant, cart }}
+      value={{ addToCart: add, clearCart: clear, restaurant, cart, sum }}
     >
       {children}
     </CartContext.Provider>

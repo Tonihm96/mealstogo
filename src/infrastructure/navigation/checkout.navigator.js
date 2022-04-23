@@ -17,7 +17,7 @@ const screenOptions = {
 export const CheckoutNavigator = () => {
   return (
     <CheckoutStack.Navigator screenOptions={screenOptions}>
-      <CheckoutStack.Screen name='Checkout' component={CheckoutScreen} />
+      <CheckoutStack.Screen name='CheckoutScreen' component={CheckoutScreen} />
       <CheckoutStack.Screen
         name='CheckoutSuccess'
         component={CheckoutSuccessScreen}
