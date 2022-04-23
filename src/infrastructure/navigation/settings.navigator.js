@@ -6,7 +6,6 @@ import {
 
 import { SettingsScreen } from '../../features/settings/screens/settings.screen'
 import { FavouritesScreen } from '../../features/settings/screens/favourites.screen'
-import { FavouriteDetailsScreen } from '../../features/settings/screens/favourite-detail.screen'
 import { CameraScreen } from '../../features/settings/screens/camera.screen'
 
 const SettingsStack = createStackNavigator()
@@ -30,17 +29,6 @@ export const SettingsNavigator = ({ route, navigation }) => {
         }}
         name='FavouritesScreen'
         component={FavouritesScreen}
-      />
-      <SettingsStack.Screen
-        options={{
-          headerShown: false,
-          gestureEnabled: true,
-          gestureDirection: 'vertical',
-          animation: 'slide_from_bottom',
-          presentation: 'modal'
-        }}
-        name='FavouriteDetailsScreen'
-        component={FavouriteDetailsScreen}
       />
       <SettingsStack.Screen
         options={{

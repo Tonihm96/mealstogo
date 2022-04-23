@@ -16,21 +16,37 @@ import {
   CartIcon,
   NameInput,
   PayButton,
-  ClearButton
+  ClearButton,
+  PaymentProcessingContainer,
+  PaymentProcessing
 } from './components/checkout.styles'
 
-export const CheckoutScreen = () => {
+export const CheckoutScreen = ({ navigation }) => {
   const { cart, restaurant, clearCart } = useContext(CartContext)
   const [sum, setSum] = useState(0)
   const [name, setName] = useState('')
   const [card, setCard] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState()
 
   const onPay = () => {
+    setIsLoading(true)
     if (!card || !card.id) {
-      console.log('error')
+      setIsLoading(false)
+      navigation.navigate('CheckoutError', {
+        err: 'Please fill in a valid credit card.'
+      })
       return
     }
     payRequest(card.id, sum, name)
+      .then((result) => {
+        setIsLoading(false)
+        navigation.navigate('CheckoutSuccess')
+      })
+      .catch((err) => {
+        setIsLoading(false)
+        navigation.navigate('CheckoutError', { err })
+      })
   }
 
   useEffect(() => {
@@ -57,6 +73,11 @@ export const CheckoutScreen = () => {
 
   return (
     <SafeArea>
+      {isLoading && (
+        <PaymentProcessingContainer>
+          <PaymentProcessing />
+        </PaymentProcessingContainer>
+      )}
       <RestaurantInfoCard restaurant={restaurant} />
       <ScrollView>
         <Spacer position='left' size='medium'>
@@ -81,13 +102,23 @@ export const CheckoutScreen = () => {
           onChangeText={(text) => setName(text)}
         />
         <Spacer position='top' size='large' />
-        {name.length > 0 && <CreditCardInput name={name} onSuccess={setCard} />}
+        {name.length > 0 && (
+          <CreditCardInput
+            name={name}
+            onSuccess={setCard}
+            onError={() =>
+              navigation.navigate('CheckoutError', {
+                err: 'Something went wrong processing your credit card.'
+              })
+            }
+          />
+        )}
         <Spacer position='top' size='xxl' />
-        <PayButton icon='cash-usd' onPress={onPay}>
+        <PayButton disabled={isLoading} icon='cash-usd' onPress={onPay}>
           Pay
         </PayButton>
         <Spacer position='top' size='large' />
-        <ClearButton icon='cart-off' onPress={clearCart}>
+        <ClearButton disabled={isLoading} icon='cart-off' onPress={clearCart}>
           Clear Cart
         </ClearButton>
       </ScrollView>
